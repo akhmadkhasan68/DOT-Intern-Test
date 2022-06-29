@@ -1,4 +1,4 @@
-<p align="center">![Logo DOT Indonesia](https://raw.githubusercontent.com/akhmadkhasan68/DOT-Intern-Test/master/public/assets/media/logos/logo-1.png)
+<p align="center"><img src="https://raw.githubusercontent.com/akhmadkhasan68/DOT-Intern-Test/master/public/assets/media/logos/logo-1.png" width="400">
 </p>
 
 <p align="center">
