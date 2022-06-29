@@ -38,6 +38,6 @@ $ php artisan migrate
 $ php artisan db:seed
 ```
 
-##API Documentation
+## API Documentation
 
 You can access this project API documentation [here](https://www.postman.com/)
