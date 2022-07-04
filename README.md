@@ -7,8 +7,8 @@ This project is created for intership test in DOT Indonesia as a Backend Enginee
 
 ## Depedencies
 
-- Laravel [framework](https://laravel.com/).
-- Indoregion [library for region seeder & migration](https://github.com/azishapidin/indoregion).
+- [Laravel Framework](https://laravel.com/).
+- [Indoregion](https://github.com/azishapidin/indoregion).
 
 ## Installation
 1. Clone this repository with `git` command below
@@ -38,6 +38,12 @@ $ php artisan migrate
 $ php artisan db:seed
 ```
 
+## How to Run
+1. Run local serve using `php artisan` command below
+```console
+$ php artisan serve
+```
+
 ## API Documentation
 
-You can access this project API documentation [here](https://www.postman.com/)
+You can access this project API documentation [here](https://documenter.getpostman.com/view/9987865/UzJFvJQL)
