@@ -9,6 +9,12 @@ This project is created for intership test in DOT Indonesia as a Backend Enginee
 
 - [Laravel Framework](https://laravel.com/).
 - [Indoregion](https://github.com/azishapidin/indoregion).
+- [Yajra DataTables](https://yajrabox.com/).
+- [Axios](https://axios-http.com).
+- [DataTables](https://datatables.net/).
+- [JQuery](https://jquery.com/).
+- [Sweetalert](https://sweetalert2.github.io/).
+- [Toatr](https://github.com/CodeSeven/toastr).
 
 ## Installation
 1. Clone this repository with `git` command below
