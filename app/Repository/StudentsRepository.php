@@ -25,11 +25,11 @@ class StudentsRepository{
     {
         if($paginate)
         {
-            $data = $this->model->paginate(10);
+            $data = $this->model->with(["major", "province", "regency", "district"])->paginate(10);
         }
         else
         {
-            $data = $this->model->get();
+            $data = $this->model->with(["major", "province", "regency", "district"])->get();
         }
 
         return $data;
@@ -37,7 +37,7 @@ class StudentsRepository{
 
     public function datatables()
     {
-        $data = $this->model->query();
+        $data = $this->model->query()->with(["major", "province", "regency", "district"]);
 
         return Datatables::eloquent($data)->make(true);
     }
@@ -53,7 +53,7 @@ class StudentsRepository{
     public function getDetailStudent(Int $id)
     {
         try {
-            return $this->model->findOrFail($id);
+            return $this->model->with(["major", "province", "regency", "district"])->findOrFail($id);
         } catch (ModelNotFoundException $e) {
             throw new Exception("Data not found!", 404);
         } catch (Exception $e) {

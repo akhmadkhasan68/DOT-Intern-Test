@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <form autocomplete="off" action="{{ route('students.store') }}" method="post">
+                    <form autocomplete="off" onsubmit="event.preventDefault(); submitForm(this)" action="{{ route('students.store') }}" method="post">
                         <div class="card-body">
                             @csrf
                             <h3>Data Diri Siswa</h3>
@@ -88,8 +88,8 @@
                             <div class="separator mx-1 my-4"></div>
                             <div class="form-group mb-3">
                                 <label class="form-control-label required" for="province_id">Provinsi</label>
-                                <select class="form-select form-select-solid" name="province_id" aria-label="Pilih provinsi siswa">
-                                    <option value="">Pilih Provinsi</option>
+                                <select class="form-select form-select-solid" data-control="select2" data-placeholder="Pilih Provinsi" id="province_id" name="province_id" aria-label="Pilih provinsi siswa" onchange="onchangeProvince(this, '#regency_id')">
+                                    <option></option>
                                     @foreach($provinces as $province)
                                         <option value="{{ $province->id }}">{{ $province->name }}</option>
                                     @endforeach
@@ -97,8 +97,8 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-control-label required" for="regency_id">Kota/Kabupaten</label>
-                                <select class="form-select form-select-solid" name="regency_id" aria-label="Pilih kota/kabupaten siswa">
-                                    <option value="">Pilih Kota/Kabupaten</option>
+                                <select class="form-select form-select-solid" data-control="select2" data-placeholder="Pilih Kota/Kabupaten" id="regency_id" name="regency_id" aria-label="Pilih kota/kabupaten siswa" onchange="onchangeRegency(this, '#district_id')">
+                                    <option></option>
                                     @foreach($regencies as $regency)
                                         <option value="{{ $regency->id }}">{{ $regency->name }}</option>
                                     @endforeach
@@ -106,8 +106,8 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-control-label required" for="district_id">Kecamatan</label>
-                                <select class="form-select form-select-solid" name="district_id" aria-label="Pilih kecamatan siswa">
-                                    <option value="">Pilih Kecamatan</option>
+                                <select class="form-select form-select-solid" data-control="select2" data-placeholder="Pilih Kecamatan" id="district_id" name="district_id" aria-label="Pilih kecamatan siswa">
+                                    <option></option>
                                     @foreach($districts as $district)
                                         <option value="{{ $district->id }}">{{ $district->name }}</option>
                                     @endforeach
@@ -132,5 +132,9 @@
 @endsection
 
 @section("js")
-
+    <script>
+        $(document).ready(function(){
+            
+        });
+    </script>
 @endsection

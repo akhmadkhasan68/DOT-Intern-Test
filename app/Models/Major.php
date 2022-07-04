@@ -11,8 +11,6 @@ class Major extends Model
 
     protected $guarded = [];
 
-    protected $with = ["students"];
-
     public function students()
     {
         return $this->hasMany(Student::class);

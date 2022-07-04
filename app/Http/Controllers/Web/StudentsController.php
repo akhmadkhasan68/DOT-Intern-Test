@@ -7,18 +7,28 @@ use App\Http\Requests\StudentsRequest;
 use App\Models\District;
 use App\Models\Province;
 use App\Models\Regency;
+use App\Repository\DistrictRepository;
 use App\Repository\MajorsRepository;
+use App\Repository\ProvinceRepository;
+use App\Repository\RegencyRepository;
 use App\Repository\StudentsRepository;
+use Illuminate\Http\Request;
 
 class StudentsController extends Controller
 {
     protected $studentsRepository;
     protected $majorsRepository;
+    protected $provinceRepository;
+    protected $regencyRepository;
+    protected $districtRepository;
 
-    public function __construct(StudentsRepository $studentsRepository, MajorsRepository $majorsRepository)
+    public function __construct(StudentsRepository $studentsRepository, MajorsRepository $majorsRepository, ProvinceRepository $provinceRepository, RegencyRepository $regencyRepository, DistrictRepository $districtRepository)
     {
         $this->studentsRepository = $studentsRepository;
         $this->majorsRepository = $majorsRepository;
+        $this->provinceRepository = $provinceRepository;
+        $this->regencyRepository = $regencyRepository;
+        $this->districtRepository = $districtRepository;
     }
 
     /**
@@ -40,9 +50,9 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        $provinces = Province::all();
-        $regencies = Regency::all();
-        $districts = District::all();
+        $provinces = $this->provinceRepository->getAllProvince();
+        $regencies = $this->regencyRepository->getAllRegency();
+        $districts = $this->districtRepository->getAllDistrict();
         $majors = $this->majorsRepository->getAllMajors(false);
 
         return view("students.create", compact("provinces", "regencies", "districts", "majors"));
@@ -57,12 +67,21 @@ class StudentsController extends Controller
     public function store(StudentsRequest $request)
     {
         try {
-            $this->studentsRepository->createStudent($request);
+            $data = $this->studentsRepository->createStudent($request);
 
-            return back();
+            return response()->json([
+                "error" => false,
+                "message" => "Success create data",
+                "redirect" => route("students.index"),
+                "data" => $data
+            ]);
         } catch (\Exception $e) {
             report($e);
-            abort($e->getCode());
+            return response()->json([
+                "error" => true,
+                "data" => [],
+                "message" => "Error create data"
+            ], $e->getCode());
         }
     }
 
@@ -76,7 +95,7 @@ class StudentsController extends Controller
     {
         try {
             $data = $this->studentsRepository->getDetailStudent($id);
-
+            
             return view("students.detail", compact("data"));
         } catch (\Exception $e) {
             report($e);
@@ -116,12 +135,21 @@ class StudentsController extends Controller
     public function update(StudentsRequest $request, $id)
     {
         try {
-            $this->studentsRepository->updateStudent($request, $id);
+            $data = $this->studentsRepository->updateStudent($request, $id);
     
-            return back();
+            return response()->json([
+                "error" => false,
+                "message" => "Success create data",
+                "redirect" => route("students.index"),
+                "data" => $data
+            ]);
         } catch (\Exception $e) {
             report($e);
-            abort($e->getCode());
+            return response()->json([
+                "error" => true,
+                "data" => [],
+                "message" => "Error create data"
+            ], $e->getCode());
         }
     }
 

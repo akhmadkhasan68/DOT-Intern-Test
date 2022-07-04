@@ -36,9 +36,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <form autocomplete="off" action="{{ route('students.store') }}" method="post">
+                    <form autocomplete="off" onsubmit="event.preventDefault(); submitForm(this)"  action="{{ route('students.update', $data->id) }}" method="post">
                         <div class="card-body">
-                            @csrf
+                            @csrf @method("patch")
                             <h3>Data Diri Siswa</h3>
                             <div class="separator mx-1 my-4"></div>
 
@@ -49,13 +49,13 @@
                             <div class="form-group mb-3">
                                 <label class="form-control-label required" for="phone">Jenis Kelamin</label>
                                 <div class="form-check form-check-custom form-check-solid mt-3">
-                                    <input class="form-check-input" type="radio" name="gender" value="" id="genderMen" checked/>
+                                    <input class="form-check-input" type="radio" name="gender" value="MEN" id="genderMen" checked/>
                                     <label class="form-check-label" for="genderMen">
                                         Laki-laki
                                     </label>
                                 </div>
                                 <div class="form-check form-check-custom form-check-solid mt-3">
-                                    <input class="form-check-input" type="radio" name="gender" value="" id="genderWomen"/>
+                                    <input class="form-check-input" type="radio" name="gender" value="WOMEN" id="genderWomen"/>
                                     <label class="form-check-label" for="genderWomen">
                                         Perempuan
                                     </label>
@@ -63,22 +63,22 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-control-label required" for="nim">NIM</label>
-                                <input type="text" class="form-control form-control-solid" name="nim" placeholder="Masukkan NIM Siswa ...">
+                                <input type="text" class="form-control form-control-solid" name="nim" placeholder="Masukkan NIM Siswa ..." value="{{ $data->nim }}">
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-control-label required" for="email">E-Mail</label>
-                                <input type="email" class="form-control form-control-solid" name="email" placeholder="Masukkan E-Mail Siswa ...">
+                                <input type="email" class="form-control form-control-solid" name="email" placeholder="Masukkan E-Mail Siswa ..." value="{{ $data->email }}">
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-control-label required" for="phone">Nomor Telepon</label>
-                                <input type="number" class="form-control form-control-solid" name="phone" placeholder="Masukkan Nomor Telepon Siswa ...">
+                                <input type="number" class="form-control form-control-solid" name="phone" placeholder="Masukkan Nomor Telepon Siswa ..." value="{{ $data->phone }}">
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-control-label required" for="major_id">Jurusan</label>
                                 <select class="form-select form-select-solid" name="major_id" aria-label="Pilih jurusan siswa">
                                     <option value="">Pilih Jurusan</option>
                                     @foreach($majors as $major)
-                                        <option value="{{ $major->id }}">{{ $major->name }}</option>
+                                        <option value="{{ $major->id }}" @if($data->major_id == $major->id) selected @endif>{{ $major->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -91,7 +91,7 @@
                                 <select class="form-select form-select-solid" name="province_id" aria-label="Pilih provinsi siswa">
                                     <option value="">Pilih Provinsi</option>
                                     @foreach($provinces as $province)
-                                        <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                        <option value="{{ $province->id }}" @if($data->province_id == $province->id) selected @endif>{{ $province->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -100,7 +100,7 @@
                                 <select class="form-select form-select-solid" name="regency_id" aria-label="Pilih kota/kabupaten siswa">
                                     <option value="">Pilih Kota/Kabupaten</option>
                                     @foreach($regencies as $regency)
-                                        <option value="{{ $regency->id }}">{{ $regency->name }}</option>
+                                        <option value="{{ $regency->id }}" @if($data->regency_id == $regency->id) selected @endif>{{ $regency->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -109,13 +109,13 @@
                                 <select class="form-select form-select-solid" name="district_id" aria-label="Pilih kecamatan siswa">
                                     <option value="">Pilih Kecamatan</option>
                                     @foreach($districts as $district)
-                                        <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                        <option value="{{ $district->id }}" @if($data->district_id == $district->id) selected @endif>{{ $district->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-control-label required" for="address">Alamat</label>
-                                <textarea name="address" class="form-control form-control-solid" id="address" cols="30" rows="10" placeholder="Masukkan Alamat Lengkap Siswa ..."></textarea>
+                                <textarea name="address" class="form-control form-control-solid" id="address" cols="30" rows="10" placeholder="Masukkan Alamat Lengkap Siswa ...">{{ $data->address }}</textarea>
                             </div>
                         </div>
                         <div class="card-footer">

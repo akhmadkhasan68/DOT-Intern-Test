@@ -46,3 +46,39 @@ function deleteData(e)
         } 
     })
 }
+
+function onchangeProvince(e, target)
+{
+    let value = e.value
+    axios.get(`/api/regencies/${value}`).then(data => {
+        console.log(data)
+        if(data.status == "200"){
+            let html = `<option></option>`
+            data.data.data.forEach(item => {
+                html += `<option value="${item.id}">${item.name}</option>`
+            });
+
+            $(target).html(html);
+        }
+    }).catch(data => {
+        console.log(data)
+    })
+}
+
+function onchangeRegency(e, target)
+{
+    let value = e.value
+    axios.get(`/api/districts/${value}`).then(data => {
+        console.log(data)
+        if(data.status == "200"){
+            let html = `<option></option>`
+            data.data.data.forEach(item => {
+                html += `<option value="${item.id}">${item.name}</option>`
+            });
+
+            $(target).html(html);
+        }
+    }).catch(data => {
+        console.log(data)
+    })
+}

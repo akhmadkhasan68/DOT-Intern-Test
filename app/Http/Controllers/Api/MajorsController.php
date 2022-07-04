@@ -46,6 +46,19 @@ class MajorsController extends Controller
     }
 
     /**
+     * [Description for datatable]
+     *
+     * @param Request $request
+     * 
+     * @return [type]
+     * 
+     */
+    public function datatable(Request $request)
+    {
+        return $this->repository->datatables();
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

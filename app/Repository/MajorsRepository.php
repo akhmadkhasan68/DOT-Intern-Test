@@ -6,7 +6,6 @@ use App\Models\Major;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Datatables;
-
 class MajorsRepository{
     protected $model;
 
@@ -25,11 +24,11 @@ class MajorsRepository{
     {
         if($paginate)
         {
-            $data = $this->model->paginate(10);
+            $data = $this->model->with(["students"])->paginate(10);
         }
         else
         {
-            $data = $this->model->get();
+            $data = $this->model->with(["students"])->get();
         }
 
         return $data;
@@ -37,7 +36,7 @@ class MajorsRepository{
 
     public function datatables()
     {
-        $data = $this->model->query();
+        $data = $this->model->query()->with(["students"]);
 
         return Datatables::eloquent($data)->make(true);
     }
@@ -53,7 +52,7 @@ class MajorsRepository{
     public function getDetailMajor(Int $id)
     {
         try {
-            return $this->model->findOrFail($id);
+            return $this->model->with(["students"])->findOrFail($id);
         } catch (ModelNotFoundException $e) {
             throw new Exception("Data not found!", 404);
         } catch (Exception $e) {

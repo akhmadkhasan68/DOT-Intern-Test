@@ -51,10 +51,10 @@ class StudentsRequest extends FormRequest
                 "required",
                 Rule::in(["MEN", "WOMEN"])
             ],
-            "major_id" => "required|exist:majors",
-            "province_id" => "required|exist:provinces",
-            "regency_id" => "required|exist:regencies",
-            "district_id" => "required|exist:districts",
+            "major_id" => "required|exists:majors,id",
+            "province_id" => "required|exists:provinces,id",
+            "regency_id" => "required|exists:regencies,id",
+            "district_id" => "required|exists:districts,id",
             "address" => "required"
         ];
     }

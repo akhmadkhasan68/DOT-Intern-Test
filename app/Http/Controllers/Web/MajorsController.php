@@ -27,19 +27,6 @@ class MajorsController extends Controller
     }
 
     /**
-     * [Description for datatable]
-     *
-     * @param Request $reques
-     * 
-     * @return [type]
-     * 
-     */
-    public function datatable(Request $reques)
-    {
-        return $this->repository->datatables();
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -68,7 +55,11 @@ class MajorsController extends Controller
             ]);
         } catch (\Exception $e) {
             report($e);
-            abort($e->getCode());
+            return response()->json([
+                "error" => true,
+                "data" => [],
+                "message" => "Error create data"
+            ], $e->getCode());
         }
     }
 
@@ -128,7 +119,11 @@ class MajorsController extends Controller
             ]);
         } catch (\Exception $e) {
             report($e);
-            abort($e->getCode());
+            return response()->json([
+                "error" => true,
+                "data" => [],
+                "message" => "Error udpate data"
+            ], $e->getCode());
         }
     }
 
@@ -150,7 +145,11 @@ class MajorsController extends Controller
             ]);
         } catch (\Exception $e) {
             report($e);
-            abort($e->getCode());
+            return response()->json([
+                "error" => true,
+                "data" => [],
+                "message" => "Error delete data"
+            ], $e->getCode());
         }
     }
 }

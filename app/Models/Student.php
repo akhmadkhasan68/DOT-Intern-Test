@@ -11,8 +11,6 @@ class Student extends Model
 
     protected $guarded = [];
 
-    protected $with = ["province", "regency", "district", "village", "major"];
-
     public function province()
     {
         return $this->belongsTo(Province::class);
