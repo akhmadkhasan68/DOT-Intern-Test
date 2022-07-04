@@ -9,7 +9,6 @@ This project is created for intership test in DOT Indonesia as a Backend Enginee
 
 - [Laravel Framework](https://laravel.com/).
 - [Indoregion](https://github.com/azishapidin/indoregion).
-- [Axios](https://axios-http.com/)
 
 ## Installation
 1. Clone this repository with `git` command below
