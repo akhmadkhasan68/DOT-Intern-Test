@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Web\MajorsController;
+use App\Http\Controllers\Web\StudentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layouts.master');
 });
+
+Route::resource("students", StudentsController::class);
+Route::resource("majors", MajorsController::class);
 
 Route::get('/login', function(){
     return view('login');

@@ -11,7 +11,7 @@ class Student extends Model
 
     protected $guarded = [];
 
-    protected $with = ["province", "regency", "district", "village", "major", "birth_regency"];
+    protected $with = ["province", "regency", "district", "village", "major"];
 
     public function province()
     {
@@ -36,10 +36,5 @@ class Student extends Model
     public function major()
     {
         return $this->belongsTo(Major::class);
-    }
-
-    public function birth_regency()
-    {
-        return $this->belongsTo(Regency::class, "id", "birth_regency_id");
     }
 }

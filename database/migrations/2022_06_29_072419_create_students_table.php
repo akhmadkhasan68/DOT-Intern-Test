@@ -18,8 +18,7 @@ class CreateStudentsTable extends Migration
             $table->integer("province_id");
             $table->integer("regency_id");
             $table->integer("district_id");
-            $table->integer("village_id");
-            $table->integer("birth_regency_id");
+            $table->integer("village_id")->nullable();
             $table->integer("major_id");
             $table->string("name");
             $table->string("email");
@@ -27,7 +26,6 @@ class CreateStudentsTable extends Migration
             $table->string("phone");
             $table->enum("gender", ["MEN", "WOMEN"]);
             $table->text("address");
-            $table->date("birth_date");
             $table->timestamps();
             $table->softDeletes();
         });
