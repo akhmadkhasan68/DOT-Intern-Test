@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <form autocomplete="off" action="{{ route('majors.update', $data->id) }}" method="post">
+                    <form autocomplete="off" onsubmit="event.preventDefault(); submitForm(this)" action="{{ route('majors.update', $data->id) }}" method="post">
                         <div class="card-body">
                             @csrf @method("patch")
                             <div class="form-group mb-3">

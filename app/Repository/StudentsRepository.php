@@ -5,6 +5,7 @@ use App\Http\Requests\StudentsRequest;
 use App\Models\Student;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Datatables;
 
 class StudentsRepository{
     protected $model;
@@ -32,6 +33,13 @@ class StudentsRepository{
         }
 
         return $data;
+    }
+
+    public function datatables()
+    {
+        $data = $this->model->query();
+
+        return Datatables::eloquent($data)->make(true);
     }
 
     /**

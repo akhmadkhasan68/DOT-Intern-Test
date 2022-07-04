@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MajorsRequest;
 use App\Repository\MajorsRepository;
+use Illuminate\Http\Request;
 
 class MajorsController extends Controller
 {
@@ -21,10 +22,21 @@ class MajorsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {   
+        return view("majors.index");
+    }
+
+    /**
+     * [Description for datatable]
+     *
+     * @param Request $reques
+     * 
+     * @return [type]
+     * 
+     */
+    public function datatable(Request $reques)
     {
-        $data = $this->repository->getAllMajors(false);
-        
-        return view("majors.index", compact("data"));
+        return $this->repository->datatables();
     }
 
     /**
@@ -46,9 +58,14 @@ class MajorsController extends Controller
     public function store(MajorsRequest $request)
     {
         try {
-            $this->repository->createMajor($request);
+            $data = $this->repository->createMajor($request);
 
-            return back();
+            return response()->json([
+                "error" => false,
+                "message" => "Success create data",
+                "redirect" => route("majors.index"),
+                "data" => $data
+            ]);
         } catch (\Exception $e) {
             report($e);
             abort($e->getCode());
@@ -101,9 +118,14 @@ class MajorsController extends Controller
     public function update(MajorsRequest $request, $id)
     {
         try {
-            $this->repository->updateMajor($request, $id);
+            $data = $this->repository->updateMajor($request, $id);
     
-            return back();
+            return response()->json([
+                "error" => false,
+                "message" => "Success create data",
+                "redirect" => route("majors.index"),
+                "data" => $data
+            ]);
         } catch (\Exception $e) {
             report($e);
             abort($e->getCode());
@@ -119,9 +141,13 @@ class MajorsController extends Controller
     public function destroy($id)
     {
         try {
-            $this->repository->deleteMajor($id);
+            $data = $this->repository->deleteMajor($id);
     
-            return back();
+            return response()->json([
+                "error" => false,
+                "message" => "Success delete data",
+                "data" => $data
+            ]);
         } catch (\Exception $e) {
             report($e);
             abort($e->getCode());

@@ -5,6 +5,7 @@ use App\Http\Requests\MajorsRequest;
 use App\Models\Major;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Datatables;
 
 class MajorsRepository{
     protected $model;
@@ -32,6 +33,13 @@ class MajorsRepository{
         }
 
         return $data;
+    }
+
+    public function datatables()
+    {
+        $data = $this->model->query();
+
+        return Datatables::eloquent($data)->make(true);
     }
 
     /**
