@@ -45,8 +45,10 @@ class StudentsRepository{
     public function getDetailStudent(Int $id)
     {
         try {
-            return $this->model->firstOrFail($id);
+            return $this->model->findOrFail($id);
         } catch (ModelNotFoundException $e) {
+            throw new Exception("Data not found!", 404);
+        } catch (Exception $e) {
             throw $e;
         }
     }
@@ -63,9 +65,9 @@ class StudentsRepository{
     public function updateStudent(StudentsRequest $request, Int $id)
     {
         try {
-            return $this->model->firstOrFail($id)->update($request->toArray());
+            return $this->model->findOrFail($id)->update($request->toArray());
         } catch (ModelNotFoundException $e) {
-            throw $e;
+            throw new Exception("Data not found!", 404);
         } catch (Exception $e) {
             throw $e;
         }
@@ -74,9 +76,9 @@ class StudentsRepository{
     public function deleteStudent(Int $id)
     {
         try {
-            return $this->model->firstOrFail($id)->delete($id);
+            return $this->model->findOrFail($id)->delete($id);
         } catch (ModelNotFoundException $e) {
-            throw $e;
+            throw new Exception("Data not found!", 404);
         } catch (Exception $e) {
             throw $e;
         }

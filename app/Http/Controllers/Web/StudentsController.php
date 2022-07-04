@@ -62,6 +62,7 @@ class StudentsController extends Controller
             return back();
         } catch (\Exception $e) {
             report($e);
+            abort($e->getCode());
         }
     }
 
@@ -79,6 +80,7 @@ class StudentsController extends Controller
             return view("students.detail", compact("data"));
         } catch (\Exception $e) {
             report($e);
+            abort($e->getCode());
         }
     }
 
@@ -100,6 +102,7 @@ class StudentsController extends Controller
             return view("students.edit", compact("provinces", "regencies", "districts", "majors", "data"));
         } catch (\Exception $e) {
             report($e);
+            abort($e->getCode());
         }
     }
 
@@ -118,6 +121,7 @@ class StudentsController extends Controller
             return back();
         } catch (\Exception $e) {
             report($e);
+            abort($e->getCode());
         }
     }
 
@@ -135,6 +139,7 @@ class StudentsController extends Controller
             return back();
         } catch (\Exception $e) {
             report($e);
+            abort($e->getCode());
         }
     }
 }

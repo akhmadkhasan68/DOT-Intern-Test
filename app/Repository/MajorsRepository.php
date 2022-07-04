@@ -45,8 +45,10 @@ class MajorsRepository{
     public function getDetailMajor(Int $id)
     {
         try {
-            return $this->model->firstOrFail($id);
+            return $this->model->findOrFail($id);
         } catch (ModelNotFoundException $e) {
+            throw new Exception("Data not found!", 404);
+        } catch (Exception $e) {
             throw $e;
         }
     }
@@ -63,7 +65,7 @@ class MajorsRepository{
     public function updateMajor(MajorsRequest $request, Int $id)
     {
         try {
-            return $this->model->firstOrFail($id)->update($request->toArray());
+            return $this->model->findOrFail($id)->update($request->toArray());
         } catch (ModelNotFoundException $e) {
             throw $e;
         } catch (Exception $e) {
@@ -74,7 +76,7 @@ class MajorsRepository{
     public function deleteMajor(Int $id)
     {
         try {
-            return $this->model->firstOrFail($id)->delete($id);
+            return $this->model->findOrFail($id)->delete($id);
         } catch (ModelNotFoundException $e) {
             throw $e;
         } catch (Exception $e) {

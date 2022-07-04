@@ -32,15 +32,15 @@ class StudentsController extends Controller
 
             return response()->json([
                 "error" => false,
+                "message" => "Success while load data",
                 "data" => $data,
-                "message" => "Success while load data"
             ]);
         } catch (\Exception $e) {
             report($e);
             return response()->json([
                 "error" => true,
+                "message" => "Error while load data",
                 "data" => [],
-                "message" => "Error while load data"
             ], $e->getCode());
         }
     }
@@ -58,15 +58,15 @@ class StudentsController extends Controller
 
             return response()->json([
                 "error" => false,
+                "message" => "Success while creating data",
                 "data" => $data,
-                "message" => "Success while creating data"
             ]);
         } catch (\Exception $e) {
             report($e);
             return response()->json([
                 "error" => true,
+                "message" => "Error while creating data",
                 "data" => [],
-                "message" => "Error while creating data"
             ], $e->getCode());
         }
     }
@@ -84,15 +84,15 @@ class StudentsController extends Controller
 
             return response()->json([
                 "error" => false,
+                "message" => "Success while load data",
                 "data" => $data,
-                "message" => "Success while load data"
             ]);
         } catch (\Exception $e) {
             report($e);
             return response()->json([
                 "error" => true,
+                "message" => "Error while load data",
                 "data" => [],
-                "message" => "Error while load data"
             ], $e->getCode());
         }
     }
@@ -104,22 +104,22 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StudentsRequest $request, $id)
     {
         try {
             $data = $this->repository->updateStudent($request, $id);
 
             return response()->json([
                 "error" => false,
+                "message" => "Success while updating data",
                 "data" => $data,
-                "message" => "Success while updating data"
             ]);
         } catch (\Exception $e) {
             report($e);
             return response()->json([
                 "error" => true,
+                "message" => "Error while updating data",
                 "data" => [],
-                "message" => "Error while updating data"
             ], $e->getCode());
         }
     }
@@ -137,15 +137,15 @@ class StudentsController extends Controller
 
             return response()->json([
                 "error" => false,
+                "message" => "Success while deleting data",
                 "data" => $data,
-                "message" => "Success while deleting data"
             ]);
         } catch (\Exception $e) {
             report($e);
             return response()->json([
                 "error" => true,
+                "message" => "Error while deleting data",
                 "data" => [],
-                "message" => "Error while deleting data"
             ], $e->getCode());
         }
     }

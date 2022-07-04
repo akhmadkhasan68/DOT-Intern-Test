@@ -51,6 +51,7 @@ class MajorsController extends Controller
             return back();
         } catch (\Exception $e) {
             report($e);
+            abort($e->getCode());
         }
     }
 
@@ -68,6 +69,7 @@ class MajorsController extends Controller
             return view("majors.detail", compact("data"));
         } catch (\Exception $e) {
             report($e);
+            abort($e->getCode());
         }
     }
 
@@ -84,8 +86,8 @@ class MajorsController extends Controller
     
             return view("majors.edit", compact("data"));
         } catch (\Exception $e) {
-            // abort(404, 'Oops...Not found!');
             report($e);
+            abort($e->getCode());
         }
     }
 
@@ -104,6 +106,7 @@ class MajorsController extends Controller
             return back();
         } catch (\Exception $e) {
             report($e);
+            abort($e->getCode());
         }
     }
 
@@ -121,6 +124,7 @@ class MajorsController extends Controller
             return back();
         } catch (\Exception $e) {
             report($e);
+            abort($e->getCode());
         }
     }
 }
