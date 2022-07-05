@@ -53,8 +53,8 @@
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
                                 <div class="d-flex flex-column">
-                                    <div class="fw-bolder d-flex align-items-center fs-5">Admin</div>
-                                    <span class="fw-bold text-muted fs-7">admin@gmail.com</span>
+                                    <div class="fw-bolder d-flex align-items-center fs-5">{{ Auth::user()->name }}</div>
+                                    <span class="fw-bold text-muted fs-7">{{ Auth::user()->email }}</span>
                                 </div>
                                 <!--end::Username-->
                             </div>
@@ -65,7 +65,7 @@
                         <!--end::Menu separator-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="../../demo1/dist/authentication/flows/basic/sign-in.html" class="menu-link px-5">Keluar</a>
+                            <a href="#" action="{{ route('logout') }}" onclick="logout(this)" class="menu-link px-5">Keluar</a>
                         </div>
                         <!--end::Menu item-->
                     </div>

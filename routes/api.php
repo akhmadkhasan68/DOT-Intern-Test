@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DistrictController;
 use App\Http\Controllers\Api\MajorsController;
 use App\Http\Controllers\Api\StudentsController;
@@ -19,14 +20,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(["prefix" => "auth"], function(){
+    Route::post("/login", [AuthController::class, "login"]);
+    Route::post("/register", [AuthController::class, "register"]);
 });
 
-Route::get("majors/datatable", [MajorsController::class, "datatable"])->name("majors.datatable");
-Route::apiResource("majors", MajorsController::class)->except("create", "edit");
-Route::get("students/datatable", [StudentsController::class, "datatable"])->name("students.datatable");
-Route::apiResource("students", StudentsController::class)->except("create", "edit");
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::group(["middleware" => "auth:sanctum"], function(){
+    Route::apiResource("majors", MajorsController::class)->except("create", "edit");
+    Route::apiResource("students", StudentsController::class)->except("create", "edit");
+});
 
 Route::get("provinces", [ProvinceController::class, "index"]);
 Route::get("regencies", [RegencyController::class, "index"]);

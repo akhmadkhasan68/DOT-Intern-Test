@@ -44,6 +44,19 @@ class StudentsController extends Controller
     }
 
     /**
+     * [Description for datatable]
+     *
+     * @param Request $reques
+     * 
+     * @return [type]
+     * 
+     */
+    public function datatable(Request $request)
+    {
+        return $this->studentsRepository->datatables();
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

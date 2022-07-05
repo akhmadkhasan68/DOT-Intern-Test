@@ -27,6 +27,19 @@ class MajorsController extends Controller
     }
 
     /**
+     * [Description for datatable]
+     *
+     * @param Request $request
+     * 
+     * @return [type]
+     * 
+     */
+    public function datatable(Request $request)
+    {
+        return $this->repository->datatables();
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

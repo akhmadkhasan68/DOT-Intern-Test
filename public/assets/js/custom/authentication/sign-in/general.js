@@ -5,7 +5,7 @@ var KTSigninGeneral = function() {
         init: function() {
             t = document.querySelector("#kt_sign_in_form"), e = document.querySelector("#kt_sign_in_submit"), i = FormValidation.formValidation(t, {
                 fields: {
-                    email: {
+                    username: {
                         validators: {
                             notEmpty: {
                                 message: "Email / Username is harus diisi"
@@ -28,31 +28,47 @@ var KTSigninGeneral = function() {
                 }
             }), e.addEventListener("click", (function(n) {
                 n.preventDefault(), i.validate().then((function(i) {
-                    "Valid" == i ? (e.setAttribute("data-kt-indicator", "on"), e.disabled = !0, setTimeout((function() {
-                        e.removeAttribute("data-kt-indicator"), e.disabled = !1, Swal.fire({
-                            text: "You have successfully logged in!",
-                            icon: "success",
+                    if("Valid" == i){
+                        let formData = new FormData(t)
+                        axios.post(t.action, formData).then(response => {
+                            let message = response.data.message
+                            toastr.success(message, "Success")
+
+                            setTimeout(() => {
+                                window.location.replace(response.data.redirect);
+                            }, 1000);
+                        }).catch(response => {
+                            let errors = response.response.data.errors ?? {}
+
+                            if(errors.length > 0){
+                                for (let [key, values] of Object.entries(errors)) {
+                                    values.forEach(value => {
+                                        toastr.error(value, "Error")
+                                    });
+                                }
+                            }else{
+                                Swal.fire({
+                                    text: response.response.data.message,
+                                    icon: "error",
+                                    buttonsStyling: !1,
+                                    confirmButtonText: "Ok",
+                                    customClass: {
+                                        confirmButton: "btn btn-primary"
+                                    }
+                                })
+                            }
+                        })
+                    }else {
+                        Swal.fire({
+                            text: "Mohon maaf, ada beberapa kesalahan dalam mengisi form. Mohon coba lagi.",
+                            icon: "error",
                             buttonsStyling: !1,
                             confirmButtonText: "Ok",
                             customClass: {
                                 confirmButton: "btn btn-primary"
                             }
-                        }).then((function(e) {
-                            if (e.isConfirmed) {
-                                t.querySelector('[name="email"]').value = "", t.querySelector('[name="password"]').value = "";
-                                var i = t.getAttribute("data-kt-redirect-url");
-                                i && (location.href = i)
-                            }
-                        }))
-                    }), 2e3)) : Swal.fire({
-                        text: "Mohon maaf, ada beberapa kesalahan dalam mengisi form",
-                        icon: "error",
-                        buttonsStyling: !1,
-                        confirmButtonText: "Ok",
-                        customClass: {
-                            confirmButton: "btn btn-primary"
-                        }
-                    })
+                        })
+                    }
                 }))
             }))
         }
