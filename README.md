@@ -9,12 +9,12 @@ This project is created for intership test in DOT Indonesia as a Backend Enginee
 
 - [Laravel Framework](https://laravel.com/).
 - [Indoregion](https://github.com/azishapidin/indoregion).
-- [Yajra DataTables](https://yajrabox.com/).
+- [Yajra DataTables](https://yajrabox.com/docs/laravel-datatables/master).
 - [Axios](https://axios-http.com).
 - [DataTables](https://datatables.net/).
 - [JQuery](https://jquery.com/).
 - [Sweetalert](https://sweetalert2.github.io/).
-- [Toatr](https://github.com/CodeSeven/toastr).
+- [Toastr](https://github.com/CodeSeven/toastr).
 
 ## Installation
 1. Clone this repository with `git` command below
@@ -43,11 +43,19 @@ $ php artisan migrate
 ```console
 $ php artisan db:seed
 ```
+7. Run `npm` command below to install all javascript depedencies
+```console
+$ npm install
+```
 
 ## How to Run
 1. Run local serve using `php artisan` command below
 ```console
 $ php artisan serve
+```
+2. Run `npm` command to compil javascript mixing assets
+```console
+$ npm run dev
 ```
 
 ## API Documentation
