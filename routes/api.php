@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\MajorsController;
 use App\Http\Controllers\Api\StudentsController;
 use App\Http\Controllers\Api\ProvinceController;
 use App\Http\Controllers\Api\RegencyController;
+use App\Http\Controllers\Api\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,8 +31,12 @@ Route::group(["prefix" => "auth"], function(){
 // });
 
 Route::group(["middleware" => "auth:sanctum"], function(){
-    Route::apiResource("majors", MajorsController::class)->except("create", "edit");
-    Route::apiResource("students", StudentsController::class)->except("create", "edit");
+    Route::apiResource("majors", MajorsController::class, ["as" => "api"])->except("create", "edit");
+    Route::apiResource("students", StudentsController::class, ["as" => "api"])->except("create", "edit");
+
+    Route::get("search/all", [SearchController::class, "search"])->name("search.all");
+    Route::get("search/students", [SearchController::class, "students"])->name("search.students");
+    Route::get("search/majors", [SearchController::class, "majors"])->name("search.majors");
 });
 
 Route::get("provinces", [ProvinceController::class, "index"]);
