@@ -30,18 +30,10 @@ class StudentsController extends Controller
         try {
             $data = $this->repository->getAllStudents();
 
-            return response()->json([
-                "error" => false,
-                "message" => "Success while load data",
-                "data" => $data,
-            ]);
+            return response()->success($data, "Success while load data");
         } catch (\Exception $e) {
             report($e);
-            return response()->json([
-                "error" => true,
-                "message" => "Error while load data",
-                "data" => [],
-            ], $e->getCode());
+            return response()->error("Error while load data", $e->getCode());
         }
     }
 
@@ -56,18 +48,10 @@ class StudentsController extends Controller
         try {
             $data = $this->repository->createStudent($request);
 
-            return response()->json([
-                "error" => false,
-                "message" => "Success while creating data",
-                "data" => $data,
-            ]);
+            return response()->success($data, "Success while creating data");
         } catch (\Exception $e) {
             report($e);
-            return response()->json([
-                "error" => true,
-                "message" => "Error while creating data",
-                "data" => [],
-            ], $e->getCode());
+            return response()->error("Error while creating data", $e->getCode());
         }
     }
 
@@ -82,18 +66,10 @@ class StudentsController extends Controller
         try {
             $data = $this->repository->getDetailStudent($id);
 
-            return response()->json([
-                "error" => false,
-                "message" => "Success while load data",
-                "data" => $data,
-            ]);
+            return response()->success($data, "Success while load data");
         } catch (\Exception $e) {
             report($e);
-            return response()->json([
-                "error" => true,
-                "message" => "Error while load data",
-                "data" => [],
-            ], $e->getCode());
+            return response()->error("Error while load data", $e->getCode());
         }
     }
 
@@ -109,18 +85,10 @@ class StudentsController extends Controller
         try {
             $data = $this->repository->updateStudent($request, $id);
 
-            return response()->json([
-                "error" => false,
-                "message" => "Success while updating data",
-                "data" => $data,
-            ]);
+            return response()->success($data, "Success while deleting data");
         } catch (\Exception $e) {
             report($e);
-            return response()->json([
-                "error" => true,
-                "message" => "Error while updating data",
-                "data" => [],
-            ], $e->getCode());
+            return response()->error("Error while updating data", $e->getCode());
         }
     }
 
@@ -135,18 +103,10 @@ class StudentsController extends Controller
         try {
             $data = $this->repository->deleteStudent($id);
 
-            return response()->json([
-                "error" => false,
-                "message" => "Success while deleting data",
-                "data" => $data,
-            ]);
+            return response()->success($data, "Success while deleting data");
         } catch (\Exception $e) {
             report($e);
-            return response()->json([
-                "error" => true,
-                "message" => "Error while deleting data",
-                "data" => [],
-            ], $e->getCode());
+            return response()->error("Error while deleting data", $e->getCode());
         }
     }
 }

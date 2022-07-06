@@ -22,19 +22,12 @@ class AuthController extends Controller
             $data = $this->repository->login($request);
             $token = $data->createToken("auth_token")->plainTextToken;
 
-            return response()->json([
-                "error" => false,
-                "data" => [
-                    "token" => $token,
-                    "token_type" => "Bearer"
-                ],
-                "message" => "Success to login"
-            ]);
+            return response()->success([
+                "token" => $token,
+                "token_type" => "Bearer"
+            ], "Success to Login!");
         } catch (\Exception $e) {
-            return response()->json([
-                "error" => true,
-                "message" => "Failed to login"
-            ], $e->getCode());
+            return response()->error("Failed to Login!", $e->getCode());
         }
     }
 
@@ -44,19 +37,12 @@ class AuthController extends Controller
             $data = $this->repository->register($request);
             $token = $data->createToken("auth_token")->plainTextToken;
 
-            return response()->json([
-                "error" => false,
-                "data" => [
-                    "token" => $token,
-                    "token_type" => "Bearer"
-                ],
-                "message" => "Success to register"
-            ]);
+            return response()->success([
+                "token" => $token,
+                "token_type" => "Bearer"
+            ], "Success to Register!");
         } catch (\Exception $e) {
-            return response()->json([
-                "error" => true,
-                "message" => "Failed to register"
-            ], $e->getCode());
+            return response()->error("Failed to Register!", $e->getCode());
         }
     }
 }

@@ -20,18 +20,10 @@ class ProvinceController extends Controller
         try {
             $data = $this->repository->getAllProvince();
 
-            return response()->json([
-                "error" => false,
-                "data" => $data,
-                "message" => "Success while load data"
-            ]);
+            return response()->success($data, "Success while load data");
         } catch (\Exception $e) {
             report($e);
-            return response()->json([
-                "error" => true,
-                "data" => [],
-                "message" => "Error while load data"
-            ], $e->getCode());
+            return response()->error("Error while load data", $e->getCode());
         }
     }
 }

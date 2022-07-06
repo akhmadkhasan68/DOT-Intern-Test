@@ -30,18 +30,10 @@ class MajorsController extends Controller
         try {
             $data = $this->repository->getAllMajors();
 
-            return response()->json([
-                "error" => false,
-                "data" => $data,
-                "message" => "Success while load data"
-            ]);
+            return response()->success($data, "Success while load data");
         } catch (\Exception $e) {
             report($e);
-            return response()->json([
-                "error" => true,
-                "data" => [],
-                "message" => "Error while load data"
-            ], $e->getCode());
+            return response()->error("Error while load data", $e->getCode());
         }
     }
 
@@ -56,18 +48,10 @@ class MajorsController extends Controller
         try {
             $data = $this->repository->createMajor($request);
 
-            return response()->json([
-                "error" => false,
-                "data" => $data,
-                "message" => "Success while creating data"
-            ]);
+            return response()->success($data, "Success while creating data");
         } catch (\Exception $e) {
             report($e);
-            return response()->json([
-                "error" => true,
-                "data" => [],
-                "message" => "Error while creating data"
-            ], $e->getCode());
+            return response()->error("Error while creating data", $e->getCode());
         }
     }
 
@@ -82,18 +66,10 @@ class MajorsController extends Controller
         try {
             $data = $this->repository->getDetailMajor($id);
 
-            return response()->json([
-                "error" => false,
-                "data" => $data,
-                "message" => "Success while load data"
-            ]);
+            return response()->success($data, "Success while load data");
         } catch (\Exception $e) {
             report($e);
-            return response()->json([
-                "error" => true,
-                "data" => [],
-                "message" => "Error while load data"
-            ], $e->getCode());
+            return response()->error("Error while load data", $e->getCode());
         }
     }
 
@@ -109,18 +85,10 @@ class MajorsController extends Controller
         try {
             $data = $this->repository->updateMajor($request, $id);
 
-            return response()->json([
-                "error" => false,
-                "data" => $data,
-                "message" => "Success while updating data"
-            ]);
+            return response()->success($data, "Success while updating data");
         } catch (\Exception $e) {
             report($e);
-            return response()->json([
-                "error" => true,
-                "data" => [],
-                "message" => "Error while updating data"
-            ], $e->getCode());
+            return response()->error("Error while updating data", $e->getCode());
         }
     }
 
@@ -135,18 +103,10 @@ class MajorsController extends Controller
         try {
             $data = $this->repository->deleteMajor($id);
 
-            return response()->json([
-                "error" => false,
-                "data" => $data,
-                "message" => "Success while deleting data"
-            ]);
+            return response()->success($data, "Success while deleting data");
         } catch (\Exception $e) {
             report($e);
-            return response()->json([
-                "error" => true,
-                "data" => [],
-                "message" => "Error while deleting data"
-            ], $e->getCode());
+            return response()->error("Error while deleting data", $e->getCode());
         }
     }
 }

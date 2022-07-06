@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        App\Providers\ResponseMacroServiceProvider::class
     ],
 
     /*
