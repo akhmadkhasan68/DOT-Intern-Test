@@ -1,9 +1,30 @@
-<p align="center"><img src="https://raw.githubusercontent.com/akhmadkhasan68/DOT-Intern-Test/master/public/assets/media/logos/logo-1.png" width="400">
-</p>
+<p align="center"><img src="https://raw.githubusercontent.com/akhmadkhasan68/DOT-Intern-Test/master/public/assets/media/logos/logo-1.png" width="400"></p>
 
 ## About this Project
 
 This project is created for intership test in DOT Indonesia as a Backend Engineer. This project is about students management data and majors management data. 
+
+## Screenshot
+<p align="center">
+    Login
+    <img src="https://raw.githubusercontent.com/akhmadkhasan68/DOT-Intern-Test/master/public/assets/media/demosd/demo25.png" width="400">
+</p>
+<p align="center">
+    Register
+    <img src="https://raw.githubusercontent.com/akhmadkhasan68/DOT-Intern-Test/master/public/assets/media/demosd/demo26.png" width="400">
+</p>
+<p align="center">
+    Data Siswa
+    <img src="https://raw.githubusercontent.com/akhmadkhasan68/DOT-Intern-Test/master/public/assets/media/demosd/demo27.png" width="400">
+</p>
+<p align="center">
+    Data Jurusan
+    <img src="https://raw.githubusercontent.com/akhmadkhasan68/DOT-Intern-Test/master/public/assets/media/demosd/demo28.png" width="400">
+</p>
+<p align="center">
+    Database Design
+    <img src="https://raw.githubusercontent.com/akhmadkhasan68/DOT-Intern-Test/master/public/assets/media/demosd/demo29.png" width="400">
+</p>
 
 ## Depedencies
 
