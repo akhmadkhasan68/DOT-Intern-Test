@@ -69,10 +69,10 @@ class SearchRepository{
 
             if($data){
                 $resultData = $data->map(function($item){
-                    return collect([
-                        "data" => $item,
-                        "link" => route("api.students.show", $item->id)
-                    ]);
+                    $data = collect($item);
+                    $data->put("link", route("api.students.show", $item->id));
+
+                    return $data;
                 });
 
                 return collect([
@@ -98,10 +98,10 @@ class SearchRepository{
 
         if($data){
             $resultData = $data->map(function($item){
-                return collect([
-                    "data" => $item,
-                    "link" => route("api.majors.show", $item->id)
-                ]);
+                $data = collect($item);
+                $data->put("link", route("api.majors.show", $item->id));
+
+                return $data;
             });
 
             return collect([

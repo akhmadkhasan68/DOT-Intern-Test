@@ -44,7 +44,7 @@
                     <div class="card-header border-0 pt-5">
                         <h3 class="card-title align-items-start flex-column">
                             <span class="card-label fw-bolder fs-3 mb-1">Data Siswa</span>
-                            <span class="text-muted mt-1 fw-bold fs-7">10 Siswa</span>
+                            <span class="text-muted mt-1 fw-bold fs-7">Siswa</span>
                         </h3>
                     </div>
                     <!--end::Header-->

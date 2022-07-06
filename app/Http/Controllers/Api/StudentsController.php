@@ -85,7 +85,7 @@ class StudentsController extends Controller
         try {
             $data = $this->repository->updateStudent($request, $id);
 
-            return response()->success($data, "Success while deleting data");
+            return response()->success($data, "Success while updating data");
         } catch (\Exception $e) {
             report($e);
             return response()->error("Error while updating data", $e->getCode());
